@@ -1,0 +1,18 @@
+The live campaign website: weloveiran.org.
+
+About the app: It's a simple Rails app that allows supporters of peace between Israel and Iran to stamp a picture of themselves with a "badge" and then share it on Facebook, Twitter or Tumblr. All uploaded pictures are stored  to the campaign's Flickr account.
+
+The problem: Map of pictures uploaded by supporters.
+As a supporter, I want to view a map of all my fellow supporters who uploaded their picture and the city they uploaded it from.
+
+We need a custom map to display geolocated campaign pictures. Today, pictures aren't being uploaded with location information. We are already working on a story that automatically detects the location of the uploaded using their IP address and geotags their picture in Flickr. So geotagging of pictures is out of scope for this story.
+
+For this story, we just want the developer(s) to create a separate page that will later be incorporated into the Rails application by our full-time developer. No need to edit the existing Rails code right now. We'd like someone to create a standalone HTML+JS page that does exactly what Flickr's Map (http://www.flickr.com/map) does--showing geotagged pictures on a map. Our pictures are already being stored in Flickr (without geotagging), but Flickr doesn't provide a reusable widget of their map that can be embedded on other websites (http://www.flickr.com/help/map). There are some other options out there, but they don't look as pretty and we'd love something custom and slick like the Flickr map so that it's more engaging. You can use the following Flickr photostream for test data: http://www.flickr.com/photos/batiks.
+
+1. How to get jpgs from flickr
+--> http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=1e50a2d34c91872b37b9a94bbb1c3fec&username=Batikart
+--> http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=1e50a2d34c91872b37b9a94bbb1c3fec&per_page=10&user_id=21207178@N07
+--> http://farm9.staticflickr.com/8012/7348984296_d161612ac1.jpg
+   (http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg)
+2. Geo tagging info
+http://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=1e50a2d34c91872b37b9a94bbb1c3fec&per_page=10&photo_id=7348984296N07
