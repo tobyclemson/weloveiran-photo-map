@@ -1,7 +1,7 @@
 describe("flickrFetcher", function () {
   var apiKey = "1e50a2d34c91872b37b9a94bbb1c3fec";
   var ajaxable = $;
-  var fetcher = weloveiran.flickrFetcher(apiKey, ajaxable);
+  var fetcher = weloveiran.flickrFetcher(apiKey, ajaxable, _);
 
   it("should fetch user id for username", function () {
     var complete = false;
@@ -30,4 +30,18 @@ describe("flickrFetcher", function () {
       return complete == true;
     }, "Flickr API to return after getPublicPhotos call", 5000);
   });
+
+  it("should fetch location information for photo id", function () {
+      var complete = false;
+      runs(function () {
+        fetcher.getLocationFor("7348984296", function (result) {
+          expect(result.photo.location).toBeDefined();
+          complete = true;
+        });
+      });
+
+      waitsFor(function () {
+        return complete == true;
+      }, "Flickr API to return after getLocation call", 5000);
+    });
 });
