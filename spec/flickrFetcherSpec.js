@@ -61,4 +61,23 @@ describe("flickr", function () {
       return complete == true;
     }, "Flickr API to return after withPhotoUrlFor call", 5000);
   });
+
+  it("should fetch locatable photo url for a username", function () {
+    var username = "Batikart";
+    var complete = false;
+    runs(function () {
+      flickr.withLocatablePhotosFor(username, function (locatablePhotos) {
+        _.each(locatablePhotos, function (locatablePhoto) {
+          expect(locatablePhoto.url).toBeDefined();
+          expect(locatablePhoto.location.latitude.toString()).toMatch(/\d+(\.\d+)?/);
+          expect(locatablePhoto.location.longitude.toString()).toMatch(/\d+(\.\d+)?/);
+        });
+        complete = true;
+      });
+    });
+
+    waitsFor(function () {
+      return complete == true;
+    }, "Flickr API to return after withPhotoUrlFor call", 5000);
+  });
 });
