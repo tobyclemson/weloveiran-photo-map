@@ -47,7 +47,7 @@ weloveiran.flickr = function (apiKey, ajaxable, _) {
   }
 
   function generatePhotoUrlFor(photo) {
-    return "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
+    return "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_m.jpg";
   }
 
   function withPhotoUrlFor(photo, callback) {

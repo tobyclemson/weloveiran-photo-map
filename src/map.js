@@ -5,12 +5,13 @@ weloveiran.initialize = function (flickr) {
 
   var initialMapOptions = {
     zoom:2,
+    maxZoom:8,
+    minZoom:3,
     center:mapCenter,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
 
   var map = new google.maps.Map(document.getElementById("map_canvas"), initialMapOptions);
-
   var infoWindow = new google.maps.InfoWindow({"maxWidth":"100px"});
 
   flickr.withLocatablePhotosFor("Batikart", function (photos) {
