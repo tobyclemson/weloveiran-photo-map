@@ -11,6 +11,8 @@ weloveiran.initialize = function (flickr) {
 
   var map = new google.maps.Map(document.getElementById("map_canvas"), initialMapOptions);
 
+  var infoWindow = new google.maps.InfoWindow({"maxWidth":"100px"});
+
   flickr.withLocatablePhotosFor("Batikart", function (photos) {
     _.each(photos, function (photo) {
       var position = new google.maps.LatLng(photo.location.latitude, photo.location.longitude);
@@ -19,8 +21,6 @@ weloveiran.initialize = function (flickr) {
         map:map,
         title:photo.url
       });
-
-      var infoWindow = new google.maps.InfoWindow({"maxWidth":"100px"});
 
       google.maps.event.addDomListener(marker, 'click', function () {
         infoWindow.setContent('<img src="' + photo.url + '" />');
