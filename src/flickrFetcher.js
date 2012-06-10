@@ -1,6 +1,6 @@
 var weloveiran = weloveiran || {};
 
-weloveiran.flickrFetcher = function (apiKey, ajaxable, _) {
+weloveiran.flickr = function (apiKey, ajaxable, _) {
 
   function flickrApiCall(method, params){
     var baseUrl = "http://api.flickr.com/services/rest/?method=" + method + "&api_key=" + apiKey + "&format=json&nojsoncallback=1&";
@@ -32,23 +32,28 @@ weloveiran.flickrFetcher = function (apiKey, ajaxable, _) {
       });
   }
 
-  function getPublicPhotosFor(userId, callback) {
+  function withPublicPhotosFor(userId, callback) {
     ajaxable.ajax(globalPhotosLookupUrlFor(userId))
       .done(function (result) {
         callback(result);
       });
   }
 
-  function getLocationFor(photoId, callback) {
+  function withLocationFor(photoId, callback) {
     ajaxable.ajax(getLocationLookupUrlFor(photoId))
       .done(function (result) {
         callback(result);
       });
   }
 
+  function withPhotoUrlFor(photo, callback) {
+    callback("http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg")
+  }
+
   return {
     withUserIdFor:withUserIdFor,
-    getPublicPhotosFor:getPublicPhotosFor,
-    getLocationFor:getLocationFor
+    withPublicPhotosFor:withPublicPhotosFor,
+    withLocationFor:withLocationFor,
+    withPhotoUrlFor:withPhotoUrlFor
   }
 };
